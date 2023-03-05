@@ -1,23 +1,25 @@
 import openai
 from apikey import api_data
-import pyttsx3
+#import pyttsx3
 import speech_recognition as sr
 import webbrowser
 from speak import speak
+from googletrans import Translator
 
 openai.api_key = api_data
 
 completion = openai.Completion()
+translator = Translator()
 
 def Reply(question):
-    prompt = f'User: {question}\n Sebas: '
+    prompt = f'{question}\n'
     response = completion.create(prompt=prompt, engine="text-davinci-002", stop=['\Chando'], max_tokens=200)
     answer = response.choices[0].text.strip()
     return answer
 
-engine = pyttsx3.init('sapi5')
-voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[0].id)
+# engine = pyttsx3.init('sapi5')
+# voices = engine.getProperty('voices')
+# engine.setProperty('voice', voices[0].id)
 
 # def speak(text):
 #     engine.say(text)
@@ -45,8 +47,10 @@ if __name__ == '__main__':
     while True:
         query = takeCommand().lower()
         ans = Reply(query)
-        print(ans)
-        speak(ans)
+        print('answer =' + ans)
+        translated_ans = translator.translate(ans, dest='ja')
+        print(f'Translated answer: {translated_ans.text}')
+        speak(translated_ans.text)
         if 'open youtube' in query:
             webbrowser.open("www.youtube.com")
         if 'open google' in query:

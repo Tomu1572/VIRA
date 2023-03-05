@@ -39,6 +39,8 @@ def speak(sentence):
     
     # Play audio file
     winsound.PlaySound(speech_target, winsound.SND_FILENAME)
+    # os.system('afplay ' + speech_target)
+
 
 
 if __name__ == '__main__':
