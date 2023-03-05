@@ -3,6 +3,7 @@ from apikey import api_data
 import pyttsx3
 import speech_recognition as sr
 import webbrowser
+from speak import speak
 
 openai.api_key = api_data
 
@@ -18,11 +19,11 @@ engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 
-def speak(text):
-    engine.say(text)
-    engine.runAndWait()
+# def speak(text):
+#     engine.say(text)
+#     engine.runAndWait()
 
-speak("Bonjour, Sebas at thou service here.")
+# speak("Bonjour, Sebas at thou service here.")
 
 def takeCommand():
     r = sr.Recognizer()
