@@ -48,9 +48,7 @@ if __name__ == '__main__':
         query = takeCommand().lower()
         ans = Reply(query)
         print('answer =' + ans)
-        translated_ans = translator.translate(ans, dest='ja')
-        print(f'Translated answer: {translated_ans.text}')
-        speak(translated_ans.text)
+        # speak(translated_ans.text)
         if 'open youtube' in query:
             webbrowser.open("www.youtube.com")
         if 'open google' in query:
